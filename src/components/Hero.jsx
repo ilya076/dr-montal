@@ -1,7 +1,7 @@
 import { ArrowRight, Heart, ShieldCheck, Star } from 'lucide-react'
 import PlaceholderImage from './PlaceholderImage'
 
-export default function Hero({ t }) {
+export default function Hero({ t, onBook }) {
   return (
     <section id="home" className="scroll-mt-20 overflow-hidden bg-gradient-to-br from-white via-teal-50/70 to-slate-100 pt-20">
       <div className="page-shell grid min-h-[calc(100vh-5rem)] items-center gap-14 py-16 lg:grid-cols-[1.04fr_0.96fr] lg:py-20">
@@ -13,14 +13,15 @@ export default function Hero({ t }) {
           <p className="mt-7 max-w-xl text-lg leading-8 text-slate-600 sm:text-xl">{t.hero.body}</p>
 
           <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-            <a
-              href={`tel:${t.clinic.phone.replaceAll(' ', '')}`}
-              aria-label={t.contact.callAria}
+            <button
+              type="button"
+              onClick={onBook}
+              aria-label={t.nav.bookAria}
               className="inline-flex items-center justify-center gap-2 rounded-full bg-teal-600 px-6 py-4 text-sm font-bold text-white shadow-lg shadow-teal-600/15 transition hover:-translate-y-0.5 hover:bg-teal-700"
             >
               {t.hero.primaryCta}
               <ArrowRight aria-hidden="true" className="size-4" />
-            </a>
+            </button>
             <a
               href="#services"
               className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white/70 px-6 py-4 text-sm font-bold text-ink transition hover:border-teal-300 hover:bg-white hover:text-teal-700"

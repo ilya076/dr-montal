@@ -1,7 +1,7 @@
-import { HeartPulse, Menu, Phone, X } from 'lucide-react'
+import { CalendarCheck2, HeartPulse, Menu, X } from 'lucide-react'
 import LanguageToggle from './LanguageToggle'
 
-export default function Header({ t, language, onLanguageChange, menuOpen, onMenuToggle, activeSection }) {
+export default function Header({ t, language, onLanguageChange, menuOpen, onMenuToggle, activeSection, onBook }) {
   const navItems = [
     ['home', t.nav.home],
     ['services', t.nav.services],
@@ -53,14 +53,15 @@ export default function Header({ t, language, onLanguageChange, menuOpen, onMenu
             onChange={onLanguageChange}
             label={t.nav.languageLabel}
           />
-          <a
-            href={`tel:${t.clinic.phone.replaceAll(' ', '')}`}
-            aria-label={t.contact.callAria}
+          <button
+            type="button"
+            onClick={onBook}
+            aria-label={t.nav.bookAria}
             className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
           >
-            <Phone aria-hidden="true" className="size-4" />
+            <CalendarCheck2 aria-hidden="true" className="size-4" />
             {t.nav.call}
-          </a>
+          </button>
         </div>
 
         <button
@@ -104,14 +105,15 @@ export default function Header({ t, language, onLanguageChange, menuOpen, onMenu
             label={t.nav.languageLabel}
             compact
           />
-          <a
-            href={`tel:${t.clinic.phone.replaceAll(' ', '')}`}
-            aria-label={t.contact.callAria}
+          <button
+            type="button"
+            onClick={() => { onBook(); handleNavClick() }}
+            aria-label={t.nav.bookAria}
             className="flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-4 py-3 text-sm font-bold text-white"
           >
-            <Phone aria-hidden="true" className="size-4" />
+            <CalendarCheck2 aria-hidden="true" className="size-4" />
             {t.nav.call}
-          </a>
+          </button>
         </div>
       </div>
     </header>

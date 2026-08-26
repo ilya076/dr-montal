@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Contact from './components/Contact'
+import BookingModal from './components/BookingModal'
 import Footer from './components/Footer'
 import Gallery from './components/Gallery'
 import Header from './components/Header'
@@ -15,7 +16,10 @@ export default function App() {
   const [language, setLanguage] = useState('ca')
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [bookingOpen, setBookingOpen] = useState(false)
   const t = translations[language]
+  const openBooking = useCallback(() => setBookingOpen(true), [])
+  const closeBooking = useCallback(() => setBookingOpen(false), [])
 
   useEffect(() => {
     document.documentElement.lang = language
@@ -66,9 +70,10 @@ export default function App() {
         menuOpen={menuOpen}
         onMenuToggle={() => setMenuOpen((open) => !open)}
         activeSection={activeSection}
+        onBook={openBooking}
       />
       <main>
-        <Hero t={t} />
+        <Hero t={t} onBook={openBooking} />
         <Services t={t} />
         <Team t={t} />
         <Insurance t={t} />
@@ -76,6 +81,7 @@ export default function App() {
         <Contact t={t} />
       </main>
       <Footer t={t} />
+      <BookingModal open={bookingOpen} onClose={closeBooking} t={t.booking} language={language} />
     </>
   )
 }
