@@ -1,7 +1,7 @@
 import { CalendarCheck2, HeartPulse, Menu, X } from 'lucide-react'
 import LanguageToggle from './LanguageToggle'
 
-export default function Header({ t, language, onLanguageChange, menuOpen, onMenuToggle, activeSection, onBook }) {
+export default function Header({ t, language, onLanguageChange, menuOpen, onMenuToggle, activeSection, bookingUrl }) {
   const navItems = [
     ['home', t.nav.home],
     ['services', t.nav.services],
@@ -53,15 +53,16 @@ export default function Header({ t, language, onLanguageChange, menuOpen, onMenu
             onChange={onLanguageChange}
             label={t.nav.languageLabel}
           />
-          <button
-            type="button"
-            onClick={onBook}
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noreferrer"
             aria-label={t.nav.bookAria}
             className="inline-flex items-center gap-2 rounded-full bg-teal-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-teal-700"
           >
             <CalendarCheck2 aria-hidden="true" className="size-4" />
             {t.nav.call}
-          </button>
+          </a>
         </div>
 
         <button
@@ -105,15 +106,17 @@ export default function Header({ t, language, onLanguageChange, menuOpen, onMenu
             label={t.nav.languageLabel}
             compact
           />
-          <button
-            type="button"
-            onClick={() => { onBook(); handleNavClick() }}
+          <a
+            href={bookingUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={handleNavClick}
             aria-label={t.nav.bookAria}
             className="flex items-center justify-center gap-2 rounded-xl bg-teal-600 px-4 py-3 text-sm font-bold text-white"
           >
             <CalendarCheck2 aria-hidden="true" className="size-4" />
             {t.nav.call}
-          </button>
+          </a>
         </div>
       </div>
     </header>
